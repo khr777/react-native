@@ -1,19 +1,18 @@
 import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
+import Header from './src/header';
 
 class App extends Component {
+
+  state = {
+    appName: 'My First App'
+  }
+
+
   render() {
     return (
       <View style={styles.mainView}>
-        <View style={styles.subView}>
-          <Text style={styles.mainText}>Hello World</Text>
-        </View>
-        <View style={styles.subView}>
-          <Text>Hello World</Text>
-        </View>
-        <View style={styles.anotherSubView}>
-          <Text style={styles.mainText}>Hello World</Text>
-        </View>
+        <Header name={this.state.appName}/>
       </View>
     );
   }
@@ -21,7 +20,7 @@ class App extends Component {
 
 const styles = StyleSheet.create({
   mainView: {
-    backgroundColor: 'green',
+    backgroundColor: 'white',
     flex: 1,
     paddingTop: 50,
     justifyContent: 'center',
@@ -29,9 +28,7 @@ const styles = StyleSheet.create({
   },
   subView: {
     backgroundColor: 'yellow',
-    flex: 1,
-    marginBottom: 10,
-    width: '50%'
+    marginBottom: 10
   }, 
   anotherSubView: {
     backgroundColor: 'yellow',
@@ -43,8 +40,8 @@ const styles = StyleSheet.create({
   },
   mainText: {
     color: 'red',
-    fontWeight: 'bold',
-    fontSize: 50,
+    fontWeight: 'normal',
+    fontSize: 20,
     padding: 20
   }
 })
