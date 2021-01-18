@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
-import {View, Text, Alert, StyleSheet} from 'react-native';
+import {View, Text, Alert, StyleSheet, ScrollView} from 'react-native';
 import Header from './src/header';
 import Generator from './src/generator';
 import NumList from './src/numList';
 
 class App extends Component<any, any> {
-
-
   state = {
     appName: 'My First App',
     random: [23, 11]
@@ -14,11 +12,9 @@ class App extends Component<any, any> {
 
   onAddRandomNum = () => {
     const randomNum = Math.floor(Math.random()*100)+1;
-    
     this.setState((prevState: { random: any; }) => {
       return {
         random:[...prevState.random, randomNum]
-        
       }
     })
   }
@@ -30,11 +26,7 @@ class App extends Component<any, any> {
       this.setState({
         random: newArray
       })
-   
   }
-
-  
-
 
   render() {
     return (
@@ -48,10 +40,24 @@ class App extends Component<any, any> {
         </View>
         <Generator add={this.onAddRandomNum}/>
 
-        <NumList 
-        num={this.state.random}
-        delete={this.onNumDelete}
-        />
+        <ScrollView 
+        style={{width: '100%'}}
+        // ScrollBar를 움직이고 놓았을 때 
+        //onMomentumScrollBegin={()=>Alert.alert('Begin')}
+        // ScrollBar 반응이 끝날 때 
+        //onMomentumScrollEnd={()=>Alert.alert('end')}
+        // 1px이라도 움직이면 트리거 해준다. 
+        //onScroll={()=>Alert.alert('Scrolling')}
+        // 바뀐 현재 높이를 알려주는 
+        //onContentSizeChange={(width, height:number)=>Alert.alert(height + '')}
+        bounces={true}
+
+        >
+          <NumList 
+          num={this.state.random}
+          delete={this.onNumDelete}
+          />
+        </ScrollView>
       </View>
     );
   }
