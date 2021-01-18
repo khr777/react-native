@@ -1,19 +1,39 @@
 import React, {Component} from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, Alert, StyleSheet} from 'react-native';
 import Header from './src/header';
 import Generator from './src/generator';
 import NumList from './src/numList';
 
-class App extends Component {
+class App extends Component<any, any> {
+
 
   state = {
     appName: 'My First App',
-    random: [23, 1445]
+    random: [23, 11]
   }
 
   onAddRandomNum = () => {
-    alert('add random number!!!');
+    const randomNum = Math.floor(Math.random()*100)+1;
+    
+    this.setState((prevState: { random: any; }) => {
+      return {
+        random:[...prevState.random, randomNum]
+        
+      }
+    })
   }
+
+  onNumDelete = (position: number) => {
+    const newArray = this.state.random.filter((num, index) => {
+      return position != index;
+    })
+      this.setState({
+        random: newArray
+      })
+   
+  }
+
+  
 
 
   render() {
@@ -23,12 +43,15 @@ class App extends Component {
         <View>
           <Text 
           style={styles.mainText}
-          onPress={() => alert('Hello World!!!')}
+          onPress={() => Alert.alert('Hello World!!!')}
           >Hello World</Text>
         </View>
         <Generator add={this.onAddRandomNum}/>
 
-        <NumList num={this.state.random}/>
+        <NumList 
+        num={this.state.random}
+        delete={this.onNumDelete}
+        />
       </View>
     );
   }

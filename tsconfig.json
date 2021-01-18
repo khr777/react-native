@@ -1,0 +1,43 @@
+{
+    "compilerOptions": {
+      "allowJs": true,
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true,
+      "isolatedModules": true,
+      "jsx": "react",
+      "lib": [
+        "es6"
+      ],
+      "strictPropertyInitialization": false,
+      "moduleResolution": "node",
+      "noEmit": true,
+      "strict": true,
+      "target": "esnext",
+      "paths": {
+        "@component/*": [
+          "./src/component/*"
+        ],
+        "@image/*": [
+          "./src/image/*"
+        ],
+        "@scene/*": [
+          "./src/scene/*"
+        ],
+        "@style/*": [
+          "./src/style/*"
+        ],
+        "@util/*": [
+          "./src/util/*"
+        ],
+        "@variable/*": [
+          "./src/variable/*"
+        ],
+      }
+    },
+    "exclude": [
+      "node_modules",
+      "babel.config.js",
+      "metro.config.js",
+      "jest.config.js"
+    ]
+  }
