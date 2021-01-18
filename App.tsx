@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import Header from './src/header';
 import Generator from './src/generator';
+import NumList from './src/numList';
 
 class App extends Component {
 
@@ -26,6 +27,8 @@ class App extends Component {
           >Hello World</Text>
         </View>
         <Generator add={this.onAddRandomNum}/>
+
+        <NumList num={this.state.random}/>
       </View>
     );
   }
@@ -36,7 +39,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     flex: 1,
     paddingTop: 50,
-    justifyContent: 'center',
+    //justifyContent: 'center',
     alignItems: 'center'
   },
   subView: {
