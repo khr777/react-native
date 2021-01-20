@@ -3,6 +3,7 @@ import {View, Text, Alert, StyleSheet, ScrollView} from 'react-native';
 import Header from './src/header';
 import Generator from './src/generator';
 import NumList from './src/numList';
+import Input from './src/input';
 
 class App extends Component<any, any> {
   state = {
@@ -30,7 +31,9 @@ class App extends Component<any, any> {
 
   render() {
     return (
+      
       <View style={styles.mainView}>
+        {/** 
         <Header name={this.state.appName}/> 
         <View>
           <Text 
@@ -39,6 +42,7 @@ class App extends Component<any, any> {
           >Hello World</Text>
         </View>
         <Generator add={this.onAddRandomNum}/>
+        
 
         <ScrollView 
         style={{width: '100%'}}
@@ -58,6 +62,8 @@ class App extends Component<any, any> {
           delete={this.onNumDelete}
           />
         </ScrollView>
+        */}
+        <Input/>
       </View>
     );
   }
