@@ -1,69 +1,54 @@
 import React, {Component} from 'react';
-import {View, Text, Alert, StyleSheet, ScrollView} from 'react-native';
+import {View, Text, Alert, Button, StyleSheet, ScrollView, TextInput} from 'react-native';
 import Header from './src/header';
 import Generator from './src/generator';
 import NumList from './src/numList';
 import Input from './src/input';
 
 class App extends Component<any, any> {
-  state = {
-    appName: 'My First App',
-    random: [23, 11]
+  state =
+  {
+      myTextInput: '',
+      alphabet:  ['a', 'b', 'c', 'd']
   }
 
-  onAddRandomNum = () => {
-    const randomNum = Math.floor(Math.random()*100)+1;
-    this.setState((prevState: { random: any; }) => {
-      return {
-        random:[...prevState.random, randomNum]
-      }
-    })
+  onChangeInput = (event: string) =>  {
+      this.setState({myTextInput: event});
   }
 
-  onNumDelete = (position: number) => {
-    const newArray = this.state.random.filter((num, index) => {
-      return position != index;
-    })
-      this.setState({
-        random: newArray
-      })
+  onAddTextInput =() => {
+    this.setState((prevState: any) =>{
+        return {
+            myTextInput: '',
+            alphabet: [...prevState.alphabet, prevState.myTextInput]
+        }
+    })    
   }
 
   render() {
     return (
-      
       <View style={styles.mainView}>
-        {/** 
-        <Header name={this.state.appName}/> 
-        <View>
-          <Text 
-          style={styles.mainText}
-          onPress={() => Alert.alert('Hello World!!!')}
-          >Hello World</Text>
-        </View>
-        <Generator add={this.onAddRandomNum}/>
-        
-
-        <ScrollView 
-        style={{width: '100%'}}
-        // ScrollBar를 움직이고 놓았을 때 
-        //onMomentumScrollBegin={()=>Alert.alert('Begin')}
-        // ScrollBar 반응이 끝날 때 
-        //onMomentumScrollEnd={()=>Alert.alert('end')}
-        // 1px이라도 움직이면 트리거 해준다. 
-        //onScroll={()=>Alert.alert('Scrolling')}
-        // 바뀐 현재 높이를 알려주는 
-        //onContentSizeChange={(width, height:number)=>Alert.alert(height + '')}
-        bounces={true}
-
-        >
-          <NumList 
-          num={this.state.random}
-          delete={this.onNumDelete}
-          />
+        <TextInput 
+                value={this.state.myTextInput}
+                style={styles.input}
+                onChangeText={this.onChangeInput}
+                multiline={true}
+                maxLength={31}
+                autoCapitalize={'none'}
+                editable={true}
+                />
+        <Button title="Add Text Input" onPress={this.onAddTextInput}/>
+        <ScrollView style={{width: '100%'}}>
+            {
+              this.state.alphabet.map((items: string, index: number) => (
+                <Text 
+                style={styles.mainText}
+                key={index}>
+                  {items}
+                </Text>
+              )) 
+            }
         </ScrollView>
-        */}
-        <Input/>
       </View>
     );
   }
@@ -93,8 +78,18 @@ const styles = StyleSheet.create({
     color: 'red',
     fontWeight: 'normal',
     fontSize: 20,
-    padding: 20
-  }
+    padding: 20,
+    margin: 20,
+    backgroundColor: 'pink'
+  },
+  input: 
+    {
+        width: '100%',
+        backgroundColor: '#cecece',
+        marginTop: 20,
+        fontSize: 25,
+        padding: 10
+    }
 })
 
 export default App;
